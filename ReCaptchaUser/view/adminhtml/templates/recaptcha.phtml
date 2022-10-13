@@ -45,12 +45,9 @@ $isInvisible = !empty($config['invisible']);
             <?php if ($isInvisible): ?>
             $('#login-form').submit(function (event) {
                 if (!this.token) {
-                    grecaptcha.execute(this.widgetId).then(
-                        function() {
-                            event.preventDefault(event);
-                            event.stopImmediatePropagation();
-                        }, function(reason) {
-                        });
+                    event.preventDefault(event);
+                    event.stopImmediatePropagation();
+                    grecaptcha.execute(this.widgetId);
                 }
             }.bind(this));
             <?php endif; ?>
